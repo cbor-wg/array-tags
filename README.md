@@ -2,7 +2,7 @@
 
 This is the working area for the Individual internet-draft, "Concise Binary Object Representation (CBOR) Tags for Typed Arrays".
 
-* [Editor's copy](https://cbor-wg.github.io/array-tags/) [![Build Status](https://travis-ci.org/cbor-wg/array-tags.svg?branch=master)](https://travis-ci.org/cbor-wg/array-tags)
+* [Editor's copy](https://cbor-wg.github.io/array-tags/)  [![Build Status](https://travis-ci.org/cbor-wg/array-tags.svg?branch=master)](https://travis-ci.org/cbor-wg/array-tags)
 * [Individual Draft] (https://tools.ietf.org/html/draft-jroatch-cbor-tags)
 * [Compare Individual Draft and Editor's copy] (https://tools.ietf.org/rfcdiff?url1=https://tools.ietf.org/id/draft-jroatch-cbor-tags.txt&url2=https://cbor-wg.github.io/array-tags/draft-jroatch-cbor-tags.txt)
 
