@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-jroatch-cbor-tags-latest
-date: 2017-02-04
+date: 2017-08-08
 
 stand_alone: true
 
@@ -31,6 +31,7 @@ author:
 
 normative:
   RFC7049:
+  I-D.ietf-cbor-cddl:
 
 informative:
   TypedArray:
@@ -307,7 +308,7 @@ and is therefore not provided by the present specification.
 CDDL typenames
 ==========
 
-For the use with CDDL {{!I-D.greevenbosch-appsawg-cbor-cddl}}, the
+For the use with CDDL {{I-D.ietf-cbor-cddl}}, the
 typenames defined in {{tag-cddl}} are recommended:
 
 ~~~ CDDL
