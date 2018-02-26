@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-jroatch-cbor-tags-latest
-date: 2017-08-08
+date: 2018-02-26
 
 stand_alone: true
 
@@ -172,17 +172,17 @@ integers), the endianness, and one of the four length values.
 
 In order to simplify implementation, a range of tags is being
 allocated that allows retrieving all this information from the bits of
-the tag: Tag values from 64 to 87 (0x40 to 0x57).
+the tag: Tag values from TBD64 to TBD87. <!-- (0x40 to 0x57) -->
 
-The value is split up into 5 bit fields: 0b010\_f\_s\_e\_ll, as
+The value is split up into 5 bit fields: TDB0b010\_f\_s\_e\_ll, as
 detailed in {{fields}}.
 
-| Field | Use                                                   |
-| 0b010 | a constant '010'                                      |
-| f     | 0 for integer, 1 for float                            |
-| s     | 0 for unsigned integer or float, 1 for signed integer |
-| e     | 0 for big endian, 1 for little endian                 |
-| ll    | A number for the length ({{lengths}}).                |
+| Field    | Use                                                   |
+| TBD0b010 | a constant such as '010', to be defined               |
+| f        | 0 for integer, 1 for float                            |
+| s        | 0 for unsigned integer or float, 1 for signed integer |
+| e        | 0 for big endian, 1 for little endian                 |
+| ll       | A number for the length ({{lengths}}).                |
 {: #fields title="Bit fields in the low 8 bits of the tag"}
 
 The number of bytes in each array element can then be calculated by
@@ -312,30 +312,30 @@ For the use with CDDL {{I-D.ietf-cbor-cddl}}, the
 typenames defined in {{tag-cddl}} are recommended:
 
 ~~~ CDDL
-ta-uint8 = #6.64(bstr)
-ta-uint16be = #6.65(bstr)
-ta-uint32be = #6.66(bstr)
-ta-uint64be = #6.67(bstr)
-ta-uint8-clamped = #6.68(bstr)
-ta-uint16le = #6.69(bstr)
-ta-uint32le = #6.70(bstr)
-ta-uint64le = #6.71(bstr)
-ta-sint8 = #6.72(bstr)
-ta-sint16be = #6.73(bstr)
-ta-sint32be = #6.74(bstr)
-ta-sint64be = #6.75(bstr)
-; reserved: #6.76(bstr)
-ta-sint16le = #6.77(bstr)
-ta-sint32le = #6.78(bstr)
-ta-sint64le = #6.79(bstr)
-ta-float16be = #6.80(bstr)
-ta-float32be = #6.81(bstr)
-ta-float64be = #6.82(bstr)
-ta-float128be = #6.83(bstr)
-ta-float16le = #6.84(bstr)
-ta-float32le = #6.85(bstr)
-ta-float64le = #6.86(bstr)
-ta-float128le = #6.87(bstr)
+ta-uint8 = #6.TBD64(bstr)
+ta-uint16be = #6.TBD65(bstr)
+ta-uint32be = #6.TBD66(bstr)
+ta-uint64be = #6.TBD67(bstr)
+ta-uint8-clamped = #6.TBD68(bstr)
+ta-uint16le = #6.TBD69(bstr)
+ta-uint32le = #6.TBD70(bstr)
+ta-uint64le = #6.TBD71(bstr)
+ta-sint8 = #6.TBD72(bstr)
+ta-sint16be = #6.TBD73(bstr)
+ta-sint32be = #6.TBD74(bstr)
+ta-sint64be = #6.TBD75(bstr)
+; reserved: #6.TBD76(bstr)
+ta-sint16le = #6.TBD77(bstr)
+ta-sint32le = #6.TBD78(bstr)
+ta-sint64le = #6.TBD79(bstr)
+ta-float16be = #6.TBD80(bstr)
+ta-float32be = #6.TBD81(bstr)
+ta-float64be = #6.TBD82(bstr)
+ta-float128be = #6.TBD83(bstr)
+ta-float16le = #6.TBD84(bstr)
+ta-float32le = #6.TBD85(bstr)
+ta-float64le = #6.TBD86(bstr)
+ta-float128le = #6.TBD87(bstr)
 homogeneous<array> = #6.TBD41(array)
 multi-dim<dim, array> = #6.TBD40([dim, array])
 ~~~
@@ -349,40 +349,48 @@ IANA Considerations
 IANA is requested to allocate the tags in {{tab-tag-values}}, with the
 present document as the specification reference.
 
-|   Tag | Data Item            | Semantics                                      |
-|    64 | byte string          | uint8 Typed Array                              |
-|    65 | byte string          | uint16, big endian, Typed Array                |
-|    66 | byte string          | uint32, big endian, Typed Array                |
-|    67 | byte string          | uint64, big endian, Typed Array                |
-|    68 | byte string          | uint8 Typed Array, clamped arithmetic          |
-|    69 | byte string          | uint16, little endian, Typed Array             |
-|    70 | byte string          | uint32, little endian, Typed Array             |
-|    71 | byte string          | uint64, little endian, Typed Array             |
-|    72 | byte string          | sint8 Typed Array                              |
-|    73 | byte string          | sint16, big endian, Typed Array                |
-|    74 | byte string          | sint32, big endian, Typed Array                |
-|    75 | byte string          | sint64, big endian, Typed Array                |
-|    76 | byte string          | (reserved)                                     |
-|    77 | byte string          | sint16, little endian, Typed Array             |
-|    78 | byte string          | sint32, little endian, Typed Array             |
-|    79 | byte string          | sint64, little endian, Typed Array             |
-|    80 | byte string          | IEEE 754 binary16, big endian, Typed Array     |
-|    81 | byte string          | IEEE 754 binary32, big endian, Typed Array     |
-|    82 | byte string          | IEEE 754 binary64, big endian, Typed Array     |
-|    83 | byte string          | IEEE 754 binary128, big endian, Typed Array    |
-|    84 | byte string          | IEEE 754 binary16, little endian, Typed Array  |
-|    85 | byte string          | IEEE 754 binary32, little endian, Typed Array  |
-|    86 | byte string          | IEEE 754 binary64, little endian, Typed Array  |
-|    87 | byte string          | IEEE 754 binary128, little endian, Typed Array |
+| Tag   | Data Item            | Semantics                                      |
+| TBD64 | byte string          | uint8 Typed Array                              |
+| TBD65 | byte string          | uint16, big endian, Typed Array                |
+| TBD66 | byte string          | uint32, big endian, Typed Array                |
+| TBD67 | byte string          | uint64, big endian, Typed Array                |
+| TBD68 | byte string          | uint8 Typed Array, clamped arithmetic          |
+| TBD69 | byte string          | uint16, little endian, Typed Array             |
+| TBD70 | byte string          | uint32, little endian, Typed Array             |
+| TBD71 | byte string          | uint64, little endian, Typed Array             |
+| TBD72 | byte string          | sint8 Typed Array                              |
+| TBD73 | byte string          | sint16, big endian, Typed Array                |
+| TBD74 | byte string          | sint32, big endian, Typed Array                |
+| TBD75 | byte string          | sint64, big endian, Typed Array                |
+| TBD76 | byte string          | (reserved)                                     |
+| TBD77 | byte string          | sint16, little endian, Typed Array             |
+| TBD78 | byte string          | sint32, little endian, Typed Array             |
+| TBD79 | byte string          | sint64, little endian, Typed Array             |
+| TBD80 | byte string          | IEEE 754 binary16, big endian, Typed Array     |
+| TBD81 | byte string          | IEEE 754 binary32, big endian, Typed Array     |
+| TBD82 | byte string          | IEEE 754 binary64, big endian, Typed Array     |
+| TBD83 | byte string          | IEEE 754 binary128, big endian, Typed Array    |
+| TBD84 | byte string          | IEEE 754 binary16, little endian, Typed Array  |
+| TBD85 | byte string          | IEEE 754 binary32, little endian, Typed Array  |
+| TBD86 | byte string          | IEEE 754 binary64, little endian, Typed Array  |
+| TBD87 | byte string          | IEEE 754 binary128, little endian, Typed Array |
 | TBD40 | array of two arrays* | Multi-dimensional Array                        |
 | TBD41 | array                | Homogeneous Array                              |
 {: #tab-tag-values cols='r l l' title="Values for Tags"}
 
 *) TBD40 data item: second element of outer array in data item is
-native CBOR array (major type 4) or Typed Array (one of Tag 64..87)
+native CBOR array (major type 4) or Typed Array (one of Tag TBD64..TBD87)
 
-RFC editor note: Please replace TBD40 and TBD41 by the tag numbers
+RFC editor note: Please replace TBDnn by the tag numbers
 allocated by IANA throughout the document and delete this note.
+IANA note:  To make the calculations work, TDB64 to TBD87 need to come
+from a contiguous range the start of which is divisible by 32.
+
+TO DO: The WG needs to figure out whether it is OK to spend 24 "good"
+(1+1 byte) tags for this, whether this all goes to 1+2 byte tags, or
+whether maybe the layout of the bits in the tag should change to move
+the larger datatypes into the 1+2 range and just the 8-bit ones into
+the 1+1 range.
 
 Security Considerations
 ============
