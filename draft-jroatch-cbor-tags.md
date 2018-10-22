@@ -8,7 +8,6 @@ stand_alone: true
 
 ipr: trust200902
 keyword: Internet-Draft
-# updates: RFC7049   -- no, it doesn't: it just registers tags
 cat: info
 
 pi: [toc, sortrefs, symrefs, compact, comments]
@@ -453,8 +452,10 @@ the 1+1 range.
 Security Considerations
 ============
 
-The security considerations of RFC 7049 apply; the tags introduced
-here are not expected to raise security considerations beyond those.
+The security considerations of RFC 7049 apply; special attention is
+drawn to the second paragraph of Section 8 of RFC 7049.  The tags
+introduced here are not expected to raise security considerations
+beyond those.
 
 ----
 
