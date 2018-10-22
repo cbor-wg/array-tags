@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-jroatch-cbor-tags-latest
-date: 2018-02-26
+date: 2018-10-22
 
 stand_alone: true
 
@@ -234,10 +234,17 @@ is known to be the same type as that of the Typed Array.  Data in
 the Typed Array byte string consists of consecutive values where the
 last dimension is considered contiguous (row-major order).
 
+{{ex-multidim}} shows a declaration of a two-dimensional array in the
+C language, a representation of that in CBOR using both a
+multidimensional array tag and a typed array tag, as well as the same
+using the multidimensional array tag only with a basic CBOR array
+(which, with the numbers chosen for the example, happens to be
+shorter).
+
 ~~~
 uint16_t a[2][3] = {
-  {0, 1, 2},   /* row 0 */
-  {3, 4, 5},
+  {2, 4, 8},   /* row 0 */
+  {4, 16, 256},
 };
 
 <Tag TBD40> # multi-dimensional array tag
@@ -245,14 +252,27 @@ uint16_t a[2][3] = {
      82      # array(2)
        02     # unsigned(2) 1st Dimension
        03     # unsigned(3) 2nd Dimension
-     d8 41   # uint16 array
-       4a     # byte string(12)
-         00 00 # unsigned(0)
-         00 01 # unsigned(1)
-         00 02 # unsigned(2)
-         00 03 # unsigned(3)
-         00 04 # unsigned(4)
-         00 05 # unsigned(5)
+     <Tag TBD65> # uint16 array
+       4c     # byte string(12)
+         0002 # unsigned(2)
+         0004 # unsigned(4)
+         0008 # unsigned(8)
+         0004 # unsigned(4)
+         0010 # unsigned(16)
+         0100 # unsigned(256)
+
+<Tag TBD40> # multi-dimensional array tag
+   82       # array(2)
+     82      # array(2)
+       02     # unsigned(2) 1st Dimension
+       03     # unsigned(3) 2nd Dimension
+     86     # array(6)
+       02     # unsigned(2)
+       04     # unsigned(4)
+       08     # unsigned(8)
+       04     # unsigned(4)
+       10     # unsigned(16)
+       19 0100 # unsigned(256)
 ~~~
 {: #ex-multidim title="Multi-dimensional array in C and CBOR"}
 
