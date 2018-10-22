@@ -238,10 +238,7 @@ last dimension is considered contiguous (row-major order).
 
 {{ex-multidim}} shows a declaration of a two-dimensional array in the
 C language, a representation of that in CBOR using both a
-multidimensional array tag and a typed array tag, as well as the same
-using the multidimensional array tag only with a basic CBOR array
-(which, with the numbers chosen for the example, happens to be
-shorter).
+multidimensional array tag and a typed array tag.
 
 ~~~
 uint16_t a[2][3] = {
@@ -262,21 +259,34 @@ uint16_t a[2][3] = {
          0004 # unsigned(4)
          0010 # unsigned(16)
          0100 # unsigned(256)
+~~~
+{: #ex-multidim title="Multi-dimensional array in C and CBOR"}
 
+{{ex-multidim1}} shows the same two-dimensional array using the
+multidimensional array tag in conjunction with a basic CBOR array
+(which, with the small numbers chosen for the example, happens to be
+shorter).
+
+~~~
 <Tag TBD40> # multi-dimensional array tag
    82       # array(2)
      82      # array(2)
        02     # unsigned(2) 1st Dimension
        03     # unsigned(3) 2nd Dimension
      86     # array(6)
-       02     # unsigned(2)
-       04     # unsigned(4)
-       08     # unsigned(8)
-       04     # unsigned(4)
-       10     # unsigned(16)
+       02      # unsigned(2)
+       04      # unsigned(4)
+       08      # unsigned(8)
+       04      # unsigned(4)
+       10      # unsigned(16)
        19 0100 # unsigned(256)
 ~~~
-{: #ex-multidim title="Multi-dimensional array in C and CBOR"}
+{: #ex-multidim1 title="Multi-dimensional array using basic CBOR array"}
+
+Note that these arrays are in "row major" order; if a representation
+for "column major" order arrays is desired, it can be defined
+analogously with a new tag (but the present document does not).
+
 
 Homogeneous Array
 -----------------
