@@ -310,6 +310,9 @@ is specific to the application.  However, type systems of programming
 languages have enough commonality that an application should be able
 to create portable homogeneous arrays.
 
+{{ex-homogeneous}} shows an example for a homogeneous array of
+booleans in C++ and CBOR.
+
 ~~~
 bool boolArray[2] = { true, false };
 
@@ -318,7 +321,29 @@ bool boolArray[2] = { true, false };
       F5        # true
       F4        # false
 ~~~
-{: #ex-homogeneous title="Homogeneous array in C and CBOR"}
+{: #ex-homogeneous title="Homogeneous array in C++ and CBOR"}
+
+{{ex-homogeneous1}} extends the example with a more complex structure.
+
+~~~
+typedef struct {
+  bool active;
+  int value;
+} foo;
+foo myArray[2] = { {true, 3}, {true, -4} };
+
+<Tag TBD41>
+    82  # array(2)
+       82  #  array(2)
+             F5  # true
+             03  # 3
+       82 # array(2)
+             F5  # true
+             23  # -4
+~~~
+{: #ex-homogeneous1 title="Homogeneous array in C++ and CBOR"}
+
+
 
 Discussion
 ==========
