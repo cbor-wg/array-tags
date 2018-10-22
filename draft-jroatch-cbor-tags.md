@@ -404,7 +404,8 @@ IANA Considerations
 ============
 
 IANA is requested to allocate the tags in {{tab-tag-values}}, with the
-present document as the specification reference.
+present document as the specification reference.  (The reserved value
+is reserved for a future revision of typed array tags.)
 
 | Tag   | Data Item            | Semantics                                      |
 | TBD64 | byte string          | uint8 Typed Array                              |
