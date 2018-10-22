@@ -1,7 +1,7 @@
 ---
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
-docname: draft-jroatch-cbor-tags-latest
+docname: draft-ietf-cbor-array-tags-latest
 date: 2018-10-22
 
 stand_alone: true
