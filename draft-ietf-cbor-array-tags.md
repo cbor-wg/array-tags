@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-date: 2018-10-22
+date: 2019-02-27
 
 stand_alone: true
 
@@ -439,6 +439,10 @@ IANA is requested to allocate the tags in {{tab-tag-values}}, with the
 present document as the specification reference.  (The reserved value
 is reserved for a future revision of typed array tags.)
 
+The allocations come out of the "specification required" space
+(24..255), with the exception of TBD1040, which comes out of the "first
+come first served" space (256..).
+
 | Tag   | Data Item            | Semantics                                      |
 | TBD64 | byte string          | uint8 Typed Array                              |
 | TBD65 | byte string          | uint16, big endian, Typed Array                |
@@ -472,15 +476,12 @@ is reserved for a future revision of typed array tags.)
 native CBOR array (major type 4) or Typed Array (one of Tag TBD64..TBD87)
 
 RFC editor note: Please replace TBDnn by the tag numbers
-allocated by IANA throughout the document and delete this note.
+allocated by IANA throughout the document and delete this note; this
+also applies to the binary representation TBD0b010 in {{dataTypes}},
+which becomes 0b010 if the numbers are allocated as proposed.
 IANA note:  To make the calculations work, TDB64 to TBD87 need to come
-from a contiguous range the start of which is divisible by 32.
-
-TO DO: The WG needs to figure out whether it is OK to spend 24 "good"
-(1+1 byte) tags for this, whether this all goes to 1+2 byte tags, or
-whether maybe the layout of the bits in the tag should change to move
-the larger datatypes into the 1+2 range and just the 8-bit ones into
-the 1+1 range.
+from a contiguous range the start of which is divisible by 32, which
+they do if the "TBD" is simply removed.
 
 Security Considerations
 ============
