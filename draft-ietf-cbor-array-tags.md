@@ -207,8 +207,8 @@ of {{TypedArrayUpdate}}.
 Additional Array Tags
 =====================
 
-This specification defines two additional array tags.
-The Multi-dimensional Array tag can be combined with classical CBOR
+This specification defines three additional array tags.
+The Multi-dimensional Array tags can be combined with classical CBOR
 arrays as well as with Typed Arrays in order to build
 multi-dimensional arrays with constant numbers of elements in the
 sub-arrays.
@@ -284,10 +284,34 @@ shorter).
 ~~~
 {: #ex-multidim1 title="Multi-dimensional array using basic CBOR array"}
 
-Note that these arrays are in "row major" order; if a representation
-for "column major" order arrays is desired, it can be defined
-analogously with a new tag (but the present document does not).
 
+Tag:
+: TBD1040
+
+Data Item:
+: as with tag TBD40
+
+Note that above arrays are in "row major" order, which is the
+preferred order for the purposes of this specification.  An analogous
+representation that uses "column major" order arrays is provided under
+the tag TBD1040, as illustrated in {{ex-multidim2}}.
+
+~~~
+<Tag TBD1040> # multi-dimensional array tag, column major order
+   82       # array(2)
+     82      # array(2)
+       02     # unsigned(2) 1st Dimension
+       03     # unsigned(3) 2nd Dimension
+     86     # array(6)
+       02      # unsigned(2)
+       04      # unsigned(4)
+       04      # unsigned(4)
+       10      # unsigned(16)
+       08      # unsigned(8)
+       19 0100 # unsigned(256)
+~~~
+{: #ex-multidim2 title="Multi-dimensional array using basic CBOR
+array, column major order"}
 
 Homogeneous Array
 -----------------
@@ -358,6 +382,12 @@ This specification allocates a sizable chunk out of the single-byte
 tag space.  This use of code point space is justified by the wide use
 of typed arrays in data interchange.
 
+Providing a column-major order variant of the multi-dimensional array
+may seem superfluous to some, and useful to others.  It is cheap to
+define the additional tag so it is available when actually needed.
+Allocating it out of a different number space makes the preference for
+row-major evident.
+
 Applying a Homogeneous Array tag to a Typed Array would be redundant
 and is therefore not provided by the present specification.
 
@@ -396,6 +426,7 @@ ta-float64le = #6.TBD86(bstr)
 ta-float128le = #6.TBD87(bstr)
 homogeneous<array> = #6.TBD41(array)
 multi-dim<dim, array> = #6.TBD40([dim, array])
+multi-dim-column-major<dim, array> = #6.TBD1040([dim, array])
 ~~~
 {: #tag-cddl title="Recommended typenames for CDDL"}
 
@@ -437,7 +468,7 @@ is reserved for a future revision of typed array tags.)
 | TBD41 | array                | Homogeneous Array                              |
 {: #tab-tag-values cols='r l l' title="Values for Tags"}
 
-*) TBD40 data item: second element of outer array in data item is
+*) TBD40 or TBD1040 data item: second element of outer array in data item is
 native CBOR array (major type 4) or Typed Array (one of Tag TBD64..TBD87)
 
 RFC editor note: Please replace TBDnn by the tag numbers
@@ -468,7 +499,8 @@ Contributors
 {: numbered="no"}
 
 Glenn Engel suggested the tags for multi-dimensional arrays and
-homogeneous arrays.
+homogeneous arrays, Jim Schaad reminded us that column-major order
+still is in use.
 
 Acknowledgements
 ================
