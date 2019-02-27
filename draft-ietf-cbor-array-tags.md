@@ -146,7 +146,7 @@ Types of numbers        {#dataTypes}
 ------------
 
 Three classes of numbers are of interest: unsigned integers (uint),
-signed integers (twos' complement, sint), and IEEE 754 binary floating
+signed integers (two's complement, sint), and IEEE 754 binary floating
 point numbers (which are always signed).  For each of these classes,
 there are multiple representation lengths in active use:
 
@@ -175,7 +175,7 @@ In order to simplify implementation, a range of tags is being
 allocated that allows retrieving all this information from the bits of
 the tag: Tag values from TBD64 to TBD87. <!-- (0x40 to 0x57) -->
 
-The value is split up into 5 bit fields: TDB0b010\_f\_s\_e\_ll, as
+The value is split up into 5 bit fields: TBD0b010\_f\_s\_e\_ll, as
 detailed in {{fields}}.
 
 | Field    | Use                                                   |
