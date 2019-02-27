@@ -199,8 +199,8 @@ For the uint8/sint8 values, the endianness is redundant.
 Only the big endian variant is used.
 The little endian variant of sint8 MUST NOT be used, its tag is marked as
 reserved.
-As a special case, what would be the little endian variant of uint8 is
-used to signify that the numbers in the array are using clamped
+As a special case, the tag number that would have been the little
+endian variant of uint8 is used to signify that the numbers in the array are using clamped
 conversion from integers, as described in more detail in Section 7.1
 of {{TypedArrayUpdate}}.
 
