@@ -124,6 +124,8 @@ NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
 RFC 2119 {{ !RFC2119}}.
  -->
 
+{::boilerplate bcp14}
+
 The term "byte" is used in its now customary sense as a synonym for
 "octet".
 Where bit arithmetic is explained, this document uses the notation
