@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-date: 2019-02-27
+date: 2019-02-28
 
 stand_alone: true
 
@@ -443,33 +443,34 @@ The allocations come out of the "specification required" space
 (24..255), with the exception of TBD1040, which comes out of the "first
 come first served" space (256..).
 
-| Tag   | Data Item            | Semantics                                      |
-| TBD64 | byte string          | uint8 Typed Array                              |
-| TBD65 | byte string          | uint16, big endian, Typed Array                |
-| TBD66 | byte string          | uint32, big endian, Typed Array                |
-| TBD67 | byte string          | uint64, big endian, Typed Array                |
-| TBD68 | byte string          | uint8 Typed Array, clamped arithmetic          |
-| TBD69 | byte string          | uint16, little endian, Typed Array             |
-| TBD70 | byte string          | uint32, little endian, Typed Array             |
-| TBD71 | byte string          | uint64, little endian, Typed Array             |
-| TBD72 | byte string          | sint8 Typed Array                              |
-| TBD73 | byte string          | sint16, big endian, Typed Array                |
-| TBD74 | byte string          | sint32, big endian, Typed Array                |
-| TBD75 | byte string          | sint64, big endian, Typed Array                |
-| TBD76 | byte string          | (reserved)                                     |
-| TBD77 | byte string          | sint16, little endian, Typed Array             |
-| TBD78 | byte string          | sint32, little endian, Typed Array             |
-| TBD79 | byte string          | sint64, little endian, Typed Array             |
-| TBD80 | byte string          | IEEE 754 binary16, big endian, Typed Array     |
-| TBD81 | byte string          | IEEE 754 binary32, big endian, Typed Array     |
-| TBD82 | byte string          | IEEE 754 binary64, big endian, Typed Array     |
-| TBD83 | byte string          | IEEE 754 binary128, big endian, Typed Array    |
-| TBD84 | byte string          | IEEE 754 binary16, little endian, Typed Array  |
-| TBD85 | byte string          | IEEE 754 binary32, little endian, Typed Array  |
-| TBD86 | byte string          | IEEE 754 binary64, little endian, Typed Array  |
-| TBD87 | byte string          | IEEE 754 binary128, little endian, Typed Array |
-| TBD40 | array of two arrays* | Multi-dimensional Array                        |
-| TBD41 | array                | Homogeneous Array                              |
+| Tag     | Data Item            | Semantics                                      |
+| TBD64   | byte string          | uint8 Typed Array                              |
+| TBD65   | byte string          | uint16, big endian, Typed Array                |
+| TBD66   | byte string          | uint32, big endian, Typed Array                |
+| TBD67   | byte string          | uint64, big endian, Typed Array                |
+| TBD68   | byte string          | uint8 Typed Array, clamped arithmetic          |
+| TBD69   | byte string          | uint16, little endian, Typed Array             |
+| TBD70   | byte string          | uint32, little endian, Typed Array             |
+| TBD71   | byte string          | uint64, little endian, Typed Array             |
+| TBD72   | byte string          | sint8 Typed Array                              |
+| TBD73   | byte string          | sint16, big endian, Typed Array                |
+| TBD74   | byte string          | sint32, big endian, Typed Array                |
+| TBD75   | byte string          | sint64, big endian, Typed Array                |
+| TBD76   | byte string          | (reserved)                                     |
+| TBD77   | byte string          | sint16, little endian, Typed Array             |
+| TBD78   | byte string          | sint32, little endian, Typed Array             |
+| TBD79   | byte string          | sint64, little endian, Typed Array             |
+| TBD80   | byte string          | IEEE 754 binary16, big endian, Typed Array     |
+| TBD81   | byte string          | IEEE 754 binary32, big endian, Typed Array     |
+| TBD82   | byte string          | IEEE 754 binary64, big endian, Typed Array     |
+| TBD83   | byte string          | IEEE 754 binary128, big endian, Typed Array    |
+| TBD84   | byte string          | IEEE 754 binary16, little endian, Typed Array  |
+| TBD85   | byte string          | IEEE 754 binary32, little endian, Typed Array  |
+| TBD86   | byte string          | IEEE 754 binary64, little endian, Typed Array  |
+| TBD87   | byte string          | IEEE 754 binary128, little endian, Typed Array |
+| TBD40   | array of two arrays* | Multi-dimensional Array, row-major order       |
+| TBD1040 | array of two arrays* | Multi-dimensional Array, column-major order    |
+| TBD41   | array                | Homogeneous Array                              |
 {: #tab-tag-values cols='r l l' title="Values for Tags"}
 
 *) TBD40 or TBD1040 data item: second element of outer array in data item is
@@ -501,7 +502,7 @@ Contributors
 
 Glenn Engel suggested the tags for multi-dimensional arrays and
 homogeneous arrays, Jim Schaad reminded us that column-major order
-still is in use.
+still is in use.  IANA helped correct an error in a previous version.
 
 Acknowledgements
 ================
