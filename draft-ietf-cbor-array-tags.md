@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-date: 2019-03-05
+# date: 2019-03-05
 
 stand_alone: true
 
@@ -14,10 +14,6 @@ pi: [toc, sortrefs, symrefs, compact, comments]
 
 author:
   -
-    ins: J. Roatch
-    name: Johnathan Roatch
-    email: jroatch@gmail.com
-  -
     ins: C. Bormann
     name: Carsten Bormann
     org: Universität Bremen TZI
@@ -27,6 +23,7 @@ author:
     country: Germany
     phone: +49-421-218-63921
     email: cabo@tzi.org
+    role: editor
 
 normative:
   RFC7049:
@@ -492,6 +489,9 @@ beyond those.
 Contributors
 ============
 {: numbered="no"}
+
+The initial draft for this specification was written by Johnathan
+Roatch (roatch@gmail.com).  Many thanks for getting this ball rolling.
 
 Glenn Engel suggested the tags for multi-dimensional arrays and
 homogeneous arrays.
