@@ -198,7 +198,10 @@ be used, its tag number is marked as reserved.
 As a special case, the Tag that would signify the little
 endian variant of uint8 is instead assigned to signify that the numbers in the array are using clamped
 conversion from integers, as described in more detail in Section 7.1.11 (`ToUint8Clamp`)
-of the ES6 JavaScript specification {{TypedArrayES6}}.
+of the ES6 JavaScript specification {{TypedArrayES6}}; the assumption
+here is that a program-internal representation of this array after
+decoding would be marked this way for further processing, providing
+"roundtripping" of JavaScript typed arrays through CBOR.
 
 IEEE 754 binary floating numbers are always signed.  Therefore, for
 the float variants (`f` == 1), there is no need to distinguish between
