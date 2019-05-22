@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-date: 2019-03-05
+# date: 2019-03-05
 
 stand_alone: true
 
@@ -14,10 +14,6 @@ pi: [toc, sortrefs, symrefs, compact, comments]
 
 author:
   -
-    ins: J. Roatch
-    name: Johnathan Roatch
-    email: jroatch@gmail.com
-  -
     ins: C. Bormann
     name: Carsten Bormann
     org: Universität Bremen TZI
@@ -27,6 +23,7 @@ author:
     country: Germany
     phone: +49-421-218-63921
     email: cabo@tzi.org
+    role: editor
 
 normative:
   RFC7049:
@@ -34,7 +31,6 @@ normative:
 
 informative:
   TypedArray:
-    target: https://www.khronos.org/registry/typedarray/specs/1.0/
     title: Typed Array Specification
     author:
       -
@@ -46,19 +42,6 @@ informative:
         name: Kenneth Russell
         org: Google, Inc.
     date: 2011-02-08
-  TypedArrayUpdate:
-    target: https://www.khronos.org/registry/typedarray/specs/latest/
-    title: Typed Array Specification
-    author:
-      -
-        ins: D. Herman
-        name: David Herman
-        org: Mozilla Corporation
-      -
-        ins: K. Russell
-        name: Kenneth Russell
-        org: Google, Inc.
-    date: 2013-07-18
   TypedArrayES6:
     target: http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-objects
     title: >
@@ -106,13 +89,25 @@ corresponding implementations {{ArrayBuffer}}.
 
 Since these typed arrays may carry significant amounts of data, there
 is interest in interchanging them in CBOR without the need of lengthy
-conversion of each number in the array.
+conversion of each number in the array.  This also can save space
+overhead with encoding a type for each element of an array.
 
 This document defines a number of interrelated CBOR tags that cover
 these typed arrays, as well as two additional tags for
 multi-dimensional and homogeneous arrays.
 It is intended as the reference document for the IANA registration of
 the tags defined.
+
+Note that an application that generates CBOR with these tags has
+considerable freedom in choosing variants, e.g., with respect to
+endianness, embedded type (signed vs. unsigned), and number of bits
+per element, or whether a tag defined in this specification is used at
+all instead of more basic CBOR.  In contrast to representation
+variants of single CBOR numbers, there is no representation that could
+be identified as "preferred".  If deterministic encoding is desired in
+a CBOR-based protocol making use of these tags, the protocol has to
+define which of the encoding variants are used in which case.
+
 
 Terminology         {#terms}
 ------------
@@ -188,7 +183,7 @@ detailed in {{fields}}.
 
 The number of bytes in each array element can then be calculated by
 `2**(f + ll)` (or `1 << (f + ll)` in a typical programming language).
-(Notice that f and ll are the lsb of each nibble (4bit) in the byte.)
+(Notice that 0f and ll are the two least significant bits, respectively, of each nibble (4bit) in the byte.)
 
 In the CBOR representation, the total number of elements in the array
 is not expressed explicitly, but implied from the length of the byte
@@ -198,12 +193,20 @@ byte string in bytes: `bytelength >> (f + ll)`.
 
 For the uint8/sint8 values, the endianness is redundant.
 Only the big endian variant is used.
-The little endian variant of sint8 MUST NOT be used, its tag is marked as
-reserved.
-As a special case, the tag number that would have been the little
-endian variant of uint8 is used to signify that the numbers in the array are using clamped
-conversion from integers, as described in more detail in Section 7.1
-of {{TypedArrayUpdate}}.
+The Tag that would signify the little endian variant of sint8 MUST NOT
+be used, its tag number is marked as reserved.
+As a special case, the Tag that would signify the little
+endian variant of uint8 is instead assigned to signify that the numbers in the array are using clamped
+conversion from integers, as described in more detail in Section 7.1.11 (`ToUint8Clamp`)
+of the ES6 JavaScript specification {{TypedArrayES6}}; the assumption
+here is that a program-internal representation of this array after
+decoding would be marked this way for further processing, providing
+"roundtripping" of JavaScript typed arrays through CBOR.
+
+IEEE 754 binary floating numbers are always signed.  Therefore, for
+the float variants (`f` == 1), there is no need to distinguish between
+signed and unsigned variants; the `s` bit is always zero.
+
 
 Additional Array Tags
 =====================
@@ -220,23 +223,31 @@ even when a Typed Array does not apply.
 Multi-dimensional Array
 -----------------------
 
+A multi-dimensional array is represented as a tagged array that
+contains two (one-dimensional) arrays.  The first array defines the
+dimensions of the
+multi-dimensional array (in the sequence of outer dimensions towards
+inner dimensions) while the second array represents the contents
+of the multi-dimensional array.  If the second array is itself tagged
+as a Typed Array then the element type of the multi-dimensional array
+is known to be the same type as that of the Typed Array.
+
+Two tags are defined by this document, one for elements arranged in
+row-major order, and one for column-major order.
+
+### Row-major Order
+
 Tag:
 : 40
 
 Data Item:
 : array (major type 4) of two arrays, one array (major type 4) of
-  dimensions, and one array (major type 4, a Typed Array, or a
+  dimensions, which are unsigned integers distinct from zero, and one
+  array (either a CBOR array of major type 4, or a Typed Array, or a
   Homogeneous Array) of elements
 
-A multi-dimensional array is represented as a tagged array that
-contains two (one-dimensional) arrays.  The first array defines the dimensions of the
-multi-dimensional array (in the sequence of outer dimensions towards
-inner dimensions) while the second array represents the contents
-of the multi-dimensional array.  If the second array is itself tagged
-as a Typed Array then the element type of the multi-dimensional array
-is known to be the same type as that of the Typed Array.  Data in
-the Typed Array byte string consists of consecutive values where the
-last dimension is considered contiguous (row-major order).
+Data in the second array consists of consecutive values where the last
+dimension is considered contiguous (row-major order).
 
 {{ex-multidim}} shows a declaration of a two-dimensional array in the
 C language, a representation of that in CBOR using both a
@@ -285,17 +296,21 @@ shorter).
 ~~~
 {: #ex-multidim1 title="Multi-dimensional array using basic CBOR array"}
 
+### Column-Major order
+
+The multidimensional arrays specified in the previous
+sub-subsection are in "row major" order, which is the preferred order
+for the purposes of this specification.  An analogous representation
+that uses "column major" order arrays is provided in this subsection
+under the tag 1040, as illustrated in {{ex-multidim2}}.
 
 Tag:
 : 1040
 
 Data Item:
-: as with tag 40
-
-Note that above arrays are in "row major" order, which is the
-preferred order for the purposes of this specification.  An analogous
-representation that uses "column major" order arrays is provided under
-the tag 1040, as illustrated in {{ex-multidim2}}.
+: as with tag 40, except that the data in the second array consists of
+  consecutive values where the first dimension is considered contiguous
+  (column-major order).
 
 ~~~
 <Tag 1040> # multi-dimensional array tag, column major order
@@ -324,7 +339,8 @@ Data Item:
 : array (major type 4)
 
 
-This tag provides a hint to decoders that the array tagged by it has
+This tag provides a hint to decoders that the CBOR array (major type
+4, a one-dimensional array) tagged by it has
 elements that are all of the same application type.  The element type
 of the array is thus determined by the application type of the first
 array element.  This can be used by implementations in strongly typed
@@ -444,7 +460,7 @@ The allocations came out of the "specification required" space
 (24..255), with the exception of 1040, which came out of the "first
 come first served" space (256..).
 
-| Tag     | Data Item            | Semantics                                      |
+| Tag  | Data Item            | Semantics                                      |
 | 64   | byte string          | uint8 Typed Array                              |
 | 65   | byte string          | uint16, big endian, Typed Array                |
 | 66   | byte string          | uint32, big endian, Typed Array                |
@@ -481,9 +497,14 @@ Security Considerations
 ============
 
 The security considerations of RFC 7049 apply; special attention is
-drawn to the second paragraph of Section 8 of RFC 7049.  The tags
-introduced here are not expected to raise security considerations
-beyond those.
+drawn to the second paragraph of Section 8 of RFC 7049.
+
+The Tag for homogeneous arrays makes a promise about its tagged data
+item that a maliciously constructed CBOR input can then choose to
+ignore.  As always, the decoder therefore has to ensure that it is not
+driven into an undefined state by array elements that do not fulfill
+the promise and that it does continue to fulfill its API contract in
+this case as well.
 
 ----
 
@@ -492,6 +513,9 @@ beyond those.
 Contributors
 ============
 {: numbered="no"}
+
+The initial draft for this specification was written by Johnathan
+Roatch (roatch@gmail.com).  Many thanks for getting this ball rolling.
 
 Glenn Engel suggested the tags for multi-dimensional arrays and
 homogeneous arrays.
