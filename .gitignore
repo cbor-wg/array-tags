@@ -10,3 +10,5 @@
 venv/
 issues.json
 draft-jroatch-cbor-tags.md
+lib
+*.xml
