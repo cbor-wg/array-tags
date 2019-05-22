@@ -98,6 +98,17 @@ multi-dimensional and homogeneous arrays.
 It is intended as the reference document for the IANA registration of
 the tags defined.
 
+Note that an application that generates CBOR with these tags has
+considerable freedom in choosing variants, e.g., with respect to
+endianness, embedded type (signed vs. unsigned), and number of bits
+per element, or whether a tag defined in this specification is used at
+all instead of more basic CBOR.  In contrast to representation
+variants of single CBOR numbers, there is no representation that could
+be identified as "preferred".  If deterministic encoding is desired in
+a CBOR-based protocol making use of these tags, the protocol has to
+define which of the encoding variants are used in which case.
+
+
 Terminology         {#terms}
 ------------
 
