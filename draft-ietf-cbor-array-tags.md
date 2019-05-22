@@ -483,9 +483,14 @@ Security Considerations
 ============
 
 The security considerations of RFC 7049 apply; special attention is
-drawn to the second paragraph of Section 8 of RFC 7049.  The tags
-introduced here are not expected to raise security considerations
-beyond those.
+drawn to the second paragraph of Section 8 of RFC 7049.
+
+The Tag for homogeneous arrays makes a promise about its tagged data
+item that a maliciously constructed CBOR input can then choose to
+ignore.  As always, the decoder therefore has to ensure that it is not
+driven into an undefined state by array elements that do not fulfill
+the promise and that it does continue to fulfill its API contract in
+this case as well.
 
 ----
 
