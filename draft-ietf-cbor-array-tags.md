@@ -31,7 +31,6 @@ normative:
 
 informative:
   TypedArray:
-    target: https://www.khronos.org/registry/typedarray/specs/1.0/
     title: Typed Array Specification
     author:
       -
@@ -43,19 +42,6 @@ informative:
         name: Kenneth Russell
         org: Google, Inc.
     date: 2011-02-08
-  TypedArrayUpdate:
-    target: https://www.khronos.org/registry/typedarray/specs/latest/
-    title: Typed Array Specification
-    author:
-      -
-        ins: D. Herman
-        name: David Herman
-        org: Mozilla Corporation
-      -
-        ins: K. Russell
-        name: Kenneth Russell
-        org: Google, Inc.
-    date: 2013-07-18
   TypedArrayES6:
     target: http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-objects
     title: >
@@ -185,7 +171,7 @@ detailed in {{fields}}.
 
 The number of bytes in each array element can then be calculated by
 `2**(f + ll)` (or `1 << (f + ll)` in a typical programming language).
-(Notice that f and ll are the lsb of each nibble (4bit) in the byte.)
+(Notice that 0f and ll are the two least significant bits, respectively, of each nibble (4bit) in the byte.)
 
 In the CBOR representation, the total number of elements in the array
 is not expressed explicitly, but implied from the length of the byte
@@ -195,12 +181,17 @@ byte string in bytes: `bytelength >> (f + ll)`.
 
 For the uint8/sint8 values, the endianness is redundant.
 Only the big endian variant is used.
-The little endian variant of sint8 MUST NOT be used, its tag is marked as
-reserved.
-As a special case, the tag number that would have been the little
-endian variant of uint8 is used to signify that the numbers in the array are using clamped
-conversion from integers, as described in more detail in Section 7.1
-of {{TypedArrayUpdate}}.
+The Tag that would signify the little endian variant of sint8 MUST NOT
+be used, its tag number is marked as reserved.
+As a special case, the Tag that would signify the little
+endian variant of uint8 is instead assigned to signify that the numbers in the array are using clamped
+conversion from integers, as described in more detail in Section 7.1.11 (`ToUint8Clamp`)
+of the ES6 JavaScript specification {{TypedArrayES6}}.
+
+IEEE 754 binary floating numbers are always signed.  Therefore, for
+the float variants (`f` == 1), there is no need to distinguish between
+signed and unsigned variants; the `s` bit is always zero.
+
 
 Additional Array Tags
 =====================
@@ -453,7 +444,7 @@ The allocations came out of the "specification required" space
 (24..255), with the exception of 1040, which came out of the "first
 come first served" space (256..).
 
-| Tag     | Data Item            | Semantics                                      |
+| Tag  | Data Item            | Semantics                                      |
 | 64   | byte string          | uint8 Typed Array                              |
 | 65   | byte string          | uint16, big endian, Typed Array                |
 | 66   | byte string          | uint32, big endian, Typed Array                |
