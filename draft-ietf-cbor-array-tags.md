@@ -217,23 +217,31 @@ even when a Typed Array does not apply.
 Multi-dimensional Array
 -----------------------
 
+A multi-dimensional array is represented as a tagged array that
+contains two (one-dimensional) arrays.  The first array defines the
+dimensions of the
+multi-dimensional array (in the sequence of outer dimensions towards
+inner dimensions) while the second array represents the contents
+of the multi-dimensional array.  If the second array is itself tagged
+as a Typed Array then the element type of the multi-dimensional array
+is known to be the same type as that of the Typed Array.
+
+Two tags are defined by this document, one for elements arranged in
+row-major order, and one for column-major order.
+
+### Row-major Order
+
 Tag:
 : 40
 
 Data Item:
 : array (major type 4) of two arrays, one array (major type 4) of
-  dimensions, and one array (major type 4, a Typed Array, or a
+  dimensions, which are unsigned integers distinct from zero, and one
+  array (either a CBOR array of major type 4, or a Typed Array, or a
   Homogeneous Array) of elements
 
-A multi-dimensional array is represented as a tagged array that
-contains two (one-dimensional) arrays.  The first array defines the dimensions of the
-multi-dimensional array (in the sequence of outer dimensions towards
-inner dimensions) while the second array represents the contents
-of the multi-dimensional array.  If the second array is itself tagged
-as a Typed Array then the element type of the multi-dimensional array
-is known to be the same type as that of the Typed Array.  Data in
-the Typed Array byte string consists of consecutive values where the
-last dimension is considered contiguous (row-major order).
+Data in the second array consists of consecutive values where the last
+dimension is considered contiguous (row-major order).
 
 {{ex-multidim}} shows a declaration of a two-dimensional array in the
 C language, a representation of that in CBOR using both a
@@ -282,17 +290,21 @@ shorter).
 ~~~
 {: #ex-multidim1 title="Multi-dimensional array using basic CBOR array"}
 
+### Column-Major order
+
+The multidimensional arrays specified in the previous
+sub-subsection are in "row major" order, which is the preferred order
+for the purposes of this specification.  An analogous representation
+that uses "column major" order arrays is provided in this subsection
+under the tag 1040, as illustrated in {{ex-multidim2}}.
 
 Tag:
 : 1040
 
 Data Item:
-: as with tag 40
-
-Note that above arrays are in "row major" order, which is the
-preferred order for the purposes of this specification.  An analogous
-representation that uses "column major" order arrays is provided under
-the tag 1040, as illustrated in {{ex-multidim2}}.
+: as with tag 40, except that the data in the second array consists of
+  consecutive values where the first dimension is considered contiguous
+  (column-major order).
 
 ~~~
 <Tag 1040> # multi-dimensional array tag, column major order
