@@ -89,7 +89,8 @@ corresponding implementations {{ArrayBuffer}}.
 
 Since these typed arrays may carry significant amounts of data, there
 is interest in interchanging them in CBOR without the need of lengthy
-conversion of each number in the array.
+conversion of each number in the array.  This also can save space
+overhead with encoding a type for each element of an array.
 
 This document defines a number of interrelated CBOR tags that cover
 these typed arrays, as well as two additional tags for
@@ -324,7 +325,8 @@ Data Item:
 : array (major type 4)
 
 
-This tag provides a hint to decoders that the array tagged by it has
+This tag provides a hint to decoders that the CBOR array (major type
+4, a one-dimensional array) tagged by it has
 elements that are all of the same application type.  The element type
 of the array is thus determined by the application type of the first
 array element.  This can be used by implementations in strongly typed
