@@ -308,7 +308,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Bormann, C., Ed." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-cbor-array-tags-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-05-22" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-06-19" />
   <meta name="dct.abstract" content="The Concise Binary Object Representation (CBOR, RFC 7049) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation.The present document makes use of this extensibility to define a number of CBOR tags for typed arrays of numeric data, as well as two additional tags for multi-dimensional and homogeneous arrays.  It is intended as the reference document for the IANA registration of the CBOR tags defined." />
   <meta name="description" content="The Concise Binary Object Representation (CBOR, RFC 7049) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation.The present document makes use of this extensibility to define a number of CBOR tags for typed arrays of numeric data, as well as two additional tags for multi-dimensional and homogeneous arrays.  It is intended as the reference document for the IANA registration of the CBOR tags defined." />
 
@@ -329,10 +329,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Informational</td>
-<td class="right">May 22, 2019</td>
+<td class="right">June 19, 2019</td>
 </tr>
 <tr>
-<td class="left">Expires: November 23, 2019</td>
+<td class="left">Expires: December 21, 2019</td>
 <td class="right"></td>
 </tr>
 
@@ -350,7 +350,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 23, 2019.</p>
+<p>This Internet-Draft will expire on December 21, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -460,7 +460,7 @@ ul.toc li {
 </tr>
 </tbody>
 </table>
-<p id="rfc.section.2.1.p.2">Here, sintN stands for a signed integer of exactly N bits (for instance, sint16), and uintN stands for an unsigned integer of exactly N bits (for instance, uint32).  The name binaryN stands for the number form of the same name defined in IEEE 754.</p>
+<p id="rfc.section.2.1.p.2">Here, sintN stands for a signed integer of exactly N bits (for instance, sint16), and uintN stands for an unsigned integer of exactly N bits (for instance, uint32).  The name binaryN stands for the number form of the same name defined in IEEE 754 <a href="#IEEE754" class="xref">[IEEE754]</a>.</p>
 <p id="rfc.section.2.1.p.3">Since one objective of these tags is to be able to directly ship the ArrayBuffers underlying the Typed Arrays without re-encoding them, and these may be either in big endian (network byte order) or in little endian form, we need to define tags for both variants.</p>
 <p id="rfc.section.2.1.p.4">In total, this leads to 24 variants.  In the tag, we need to express the choice between integer and floating point, the signedness (for integers), the endianness, and one of the four length values.</p>
 <p id="rfc.section.2.1.p.5">In order to simplify implementation, a range of tags is being allocated that allows retrieving all this information from the bits of the tag: Tag values from 64 to 87. </p>
@@ -648,7 +648,7 @@ foo myArray[2] = { {true, 3}, {true, -4} };
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#cddl-typenames" id="cddl-typenames">CDDL typenames</a>
 </h1>
-<p id="rfc.section.5.p.1">For the use with CDDL <a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>, the typenames defined in <a href="#tag-cddl" class="xref">Figure 6</a> are recommended:</p>
+<p id="rfc.section.5.p.1">For the use with CDDL <a href="#RFC8610" class="xref">[RFC8610]</a>, the typenames defined in <a href="#tag-cddl" class="xref">Figure 6</a> are recommended:</p>
 <div id="rfc.figure.6"></div>
 <div id="tag-cddl"></div>
 <pre>
@@ -847,9 +847,9 @@ multi-dim-column-major&lt;dim, array&gt; = #6.1040([dim, array])
 <a href="#rfc.references.1">8.1.</a> Normative References</h1>
 <table><tbody>
 <tr>
-<td class="reference"><b id="I-D.ietf-cbor-cddl">[I-D.ietf-cbor-cddl]</b></td>
+<td class="reference"><b id="IEEE754">[IEEE754]</b></td>
 <td class="top">
-<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-ietf-cbor-cddl-08">Concise data definition language (CDDL): a notational convention to express CBOR and JSON data structures</a>", Internet-Draft draft-ietf-cbor-cddl-08, March 2019.</td>
+<a>IEEE</a>, "<a>IEEE Standard for Floating-Point Arithmetic</a>", IEEE Std 754-2008</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
@@ -865,6 +865,11 @@ multi-dim-column-major&lt;dim, array&gt; = #6.1040([dim, array])
 <td class="reference"><b id="RFC8174">[RFC8174]</b></td>
 <td class="top">
 <a>Leiba, B.</a>, "<a href="https://tools.ietf.org/html/rfc8174">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a>", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8610">[RFC8610]</b></td>
+<td class="top">
+<a>Birkholz, H.</a>, <a>Vigano, C.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/rfc8610">Concise Data Definition Language (CDDL): A Notational Convention to Express Concise Binary Object Representation (CBOR) and JSON Data Structures</a>", RFC 8610, DOI 10.17487/RFC8610, June 2019.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">

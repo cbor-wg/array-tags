@@ -4,8 +4,8 @@
 
 Network Working Group                                    C. Bormann, Ed.
 Internet-Draft                                   Universitaet Bremen TZI
-Intended status: Informational                              May 22, 2019
-Expires: November 23, 2019
+Intended status: Informational                             June 19, 2019
+Expires: December 21, 2019
 
 
    Concise Binary Object Representation (CBOR) Tags for Typed Arrays
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 23, 2019.
+   This Internet-Draft will expire on December 21, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Bormann                 Expires November 23, 2019               [Page 1]
+Bormann                 Expires December 21, 2019               [Page 1]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
    carefully, as they describe your rights and restrictions with respect
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bormann                 Expires November 23, 2019               [Page 2]
+Bormann                 Expires December 21, 2019               [Page 2]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
    dimensional and homogeneous arrays.  It is intended as the reference
@@ -165,9 +165,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 3]
+Bormann                 Expires December 21, 2019               [Page 3]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
                 +-----------+--------+--------+-----------+
@@ -184,7 +184,7 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
    Here, sintN stands for a signed integer of exactly N bits (for
    instance, sint16), and uintN stands for an unsigned integer of
    exactly N bits (for instance, uint32).  The name binaryN stands for
-   the number form of the same name defined in IEEE 754.
+   the number form of the same name defined in IEEE 754 [IEEE754].
 
    Since one objective of these tags is to be able to directly ship the
    ArrayBuffers underlying the Typed Arrays without re-encoding them,
@@ -221,9 +221,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 4]
+Bormann                 Expires December 21, 2019               [Page 4]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
    In the CBOR representation, the total number of elements in the array
@@ -277,9 +277,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 5]
+Bormann                 Expires December 21, 2019               [Page 5]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
 3.1.1.  Row-major Order
@@ -333,9 +333,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 6]
+Bormann                 Expires December 21, 2019               [Page 6]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
    <Tag 40> # multi-dimensional array tag
@@ -389,9 +389,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 7]
+Bormann                 Expires December 21, 2019               [Page 7]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
 3.2.  Homogeneous Array
@@ -445,9 +445,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 8]
+Bormann                 Expires December 21, 2019               [Page 8]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
    typedef struct {
@@ -501,15 +501,15 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019               [Page 9]
+Bormann                 Expires December 21, 2019               [Page 9]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
 5.  CDDL typenames
 
-   For the use with CDDL [I-D.ietf-cbor-cddl], the typenames defined in
-   Figure 6 are recommended:
+   For the use with CDDL [RFC8610], the typenames defined in Figure 6
+   are recommended:
 
    ta-uint8 = #6.64(bstr)
    ta-uint16be = #6.65(bstr)
@@ -557,9 +557,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019              [Page 10]
+Bormann                 Expires December 21, 2019              [Page 10]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
 6.  IANA Considerations
@@ -613,9 +613,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019              [Page 11]
+Bormann                 Expires December 21, 2019              [Page 11]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
    +------+-------------------+----------------------------------------+
@@ -669,9 +669,9 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019              [Page 12]
+Bormann                 Expires December 21, 2019              [Page 12]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
 7.  Security Considerations
@@ -725,20 +725,17 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
 
 
 
-Bormann                 Expires November 23, 2019              [Page 13]
+Bormann                 Expires December 21, 2019              [Page 13]
 
-Internet-Draft         CBOR tags for typed arrays               May 2019
+Internet-Draft         CBOR tags for typed arrays              June 2019
 
 
 8.  References
 
 8.1.  Normative References
 
-   [I-D.ietf-cbor-cddl]
-              Birkholz, H., Vigano, C., and C. Bormann, "Concise data
-              definition language (CDDL): a notational convention to
-              express CBOR and JSON data structures", draft-ietf-cbor-
-              cddl-08 (work in progress), March 2019.
+   [IEEE754]  IEEE, "IEEE Standard for Floating-Point Arithmetic", IEEE
+              Std 754-2008.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -752,6 +749,12 @@ Internet-Draft         CBOR tags for typed arrays               May 2019
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+   [RFC8610]  Birkholz, H., Vigano, C., and C. Bormann, "Concise Data
+              Definition Language (CDDL): A Notational Convention to
+              Express Concise Binary Object Representation (CBOR) and
+              JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
+              June 2019, <https://www.rfc-editor.org/info/rfc8610>.
 
 8.2.  Informative References
 
@@ -776,15 +779,15 @@ Contributors
    Roatch (roatch@gmail.com).  Many thanks for getting this ball
    rolling.
 
+
+
+Bormann                 Expires December 21, 2019              [Page 14]
+
+Internet-Draft         CBOR tags for typed arrays              June 2019
+
+
    Glenn Engel suggested the tags for multi-dimensional arrays and
    homogeneous arrays.
-
-
-
-Bormann                 Expires November 23, 2019              [Page 14]
-
-Internet-Draft         CBOR tags for typed arrays               May 2019
-
 
 Acknowledgements
 
@@ -834,7 +837,4 @@ Author's Address
 
 
 
-
-
-
-Bormann                 Expires November 23, 2019              [Page 15]
+Bormann                 Expires December 21, 2019              [Page 15]
