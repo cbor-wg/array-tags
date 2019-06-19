@@ -26,8 +26,17 @@ author:
     role: editor
 
 normative:
-  RFC7049:
-  I-D.ietf-cbor-cddl:
+  RFC7049: cbor
+  RFC8610: cddl
+  IEEE754:
+    -: fp
+    title: IEEE Standard for Floating-Point Arithmetic
+    author:
+      -
+        org: IEEE
+    seriesinfo:
+      IEEE Std: 754-2008
+    date: false
 
 informative:
   TypedArray:
@@ -155,7 +164,7 @@ there are multiple representation lengths in active use:
 Here, sintN stands for a signed integer of exactly N bits (for
 instance, sint16), and uintN stands for an unsigned integer of exactly
 N bits (for instance, uint32).  The name binaryN stands for the number
-form of the same name defined in IEEE 754.
+form of the same name defined in IEEE 754 {{-fp}}.
 
 Since one objective of these tags is to be able to directly ship the
 ArrayBuffers underlying the Typed Arrays without re-encoding them, and
@@ -413,7 +422,7 @@ and is therefore not provided by the present specification.
 CDDL typenames
 ==========
 
-For the use with CDDL {{I-D.ietf-cbor-cddl}}, the
+For the use with CDDL {{-cddl}}, the
 typenames defined in {{tag-cddl}} are recommended:
 
 ~~~ CDDL
