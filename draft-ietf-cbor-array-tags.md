@@ -201,7 +201,7 @@ computed inversely to the previous formula from the length of the
 byte string in bytes: `bytelength >> (f + ll)`.
 
 For the uint8/sint8 values, the endianness is redundant.
-Only the big endian variant is used.
+Only the tag for the big endian variant is used and assigned as such.
 The Tag that would signify the little endian variant of sint8 MUST NOT
 be used, its tag number is marked as reserved.
 As a special case, the Tag that would signify the little
@@ -214,7 +214,9 @@ decoding would be marked this way for further processing, providing
 
 IEEE 754 binary floating numbers are always signed.  Therefore, for
 the float variants (`f` == 1), there is no need to distinguish between
-signed and unsigned variants; the `s` bit is always zero.
+signed and unsigned variants; the `s` bit is always zero.  The Tag
+numbers where `s` would be one (which would have Tag values 88 to 95)
+remain free to use by other specifications.
 
 
 Additional Array Tags
