@@ -233,20 +233,23 @@ Internet-Draft         CBOR tags for typed arrays              June 2019
    in bytes: "bytelength >> (f + ll)".
 
    For the uint8/sint8 values, the endianness is redundant.  Only the
-   big endian variant is used.  The Tag that would signify the little
-   endian variant of sint8 MUST NOT be used, its tag number is marked as
-   reserved.  As a special case, the Tag that would signify the little
-   endian variant of uint8 is instead assigned to signify that the
-   numbers in the array are using clamped conversion from integers, as
-   described in more detail in Section 7.1.11 ("ToUint8Clamp") of the
-   ES6 JavaScript specification [TypedArrayES6]; the assumption here is
-   that a program-internal representation of this array after decoding
-   would be marked this way for further processing, providing
-   "roundtripping" of JavaScript typed arrays through CBOR.
+   tag for the big endian variant is used and assigned as such.  The Tag
+   that would signify the little endian variant of sint8 MUST NOT be
+   used, its tag number is marked as reserved.  As a special case, the
+   Tag that would signify the little endian variant of uint8 is instead
+   assigned to signify that the numbers in the array are using clamped
+   conversion from integers, as described in more detail in
+   Section 7.1.11 ("ToUint8Clamp") of the ES6 JavaScript specification
+   [TypedArrayES6]; the assumption here is that a program-internal
+   representation of this array after decoding would be marked this way
+   for further processing, providing "roundtripping" of JavaScript typed
+   arrays through CBOR.
 
    IEEE 754 binary floating numbers are always signed.  Therefore, for
    the float variants ("f" == 1), there is no need to distinguish
    between signed and unsigned variants; the "s" bit is always zero.
+   The Tag numbers where "s" would be one (which would have Tag values
+   88 to 95) remain free to use by other specifications.
 
 3.  Additional Array Tags
 
@@ -271,9 +274,6 @@ Internet-Draft         CBOR tags for typed arrays              June 2019
 
    Two tags are defined by this document, one for elements arranged in
    row-major order, and one for column-major order.
-
-
-
 
 
 
