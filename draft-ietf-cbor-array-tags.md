@@ -137,6 +137,12 @@ familiar from the programming language C (including C++14's 0bnnn
 binary literals), except that the operator "\*\*" stands for
 exponentiation.
 
+The term "array" is used in a general sense in this document, unless
+further specified.  The term "classical CBOR array" describes an array
+represented with CBOR major type 4.  A "homogeneous array" is an array
+of elements that are all of the same type (the term is neutral whether
+that is a representation type or an application data model type).
+
 Typed Arrays        {#typedarrays}
 ============
 
@@ -227,8 +233,8 @@ The Multi-dimensional Array tags can be combined with classical CBOR
 arrays as well as with Typed Arrays in order to build
 multi-dimensional arrays with constant numbers of elements in the
 sub-arrays.
-The Homogeneous Array tag can be used to facilitate the ingestion of
-homogeneous classical CBOR arrays, providing performance advantages
+The Homogeneous Array tag can be used as a signal by an application to
+identify a classical CBOR array as a homogeneous array,
 even when a Typed Array does not apply.
 
 Multi-dimensional Array
@@ -350,18 +356,18 @@ Data Item:
 : array (major type 4)
 
 
-This tag provides a hint to decoders that the CBOR array (major type
-4, a one-dimensional array) tagged by it has
-elements that are all of the same application type.  The element type
-of the array is thus determined by the application type of the first
-array element.  This can be used by implementations in strongly typed
-languages while decoding to create native homogeneous arrays of
-specific types instead of ordered lists.
+This tag identifies the classical CBOR array (a one-dimensional array)
+tagged by it as a homogeneous array, that is, it has elements that are
+all of the same application model data type.  The element type of the
+array is thus determined by the application model data type of the
+first array element.
 
-Which CBOR data items constitute elements of the same application type
-is specific to the application.  However, type systems of programming
-languages have enough commonality that an application should be able
-to create portable homogeneous arrays.
+This can be used in application data models that apply specific
+semantics to homogeneous arrays.  Also, in certain cases,
+implementations in strongly typed languages may be able to create
+native homogeneous arrays of specific types instead of ordered lists
+while decoding.  Which CBOR data items constitute elements of the same
+application type is specific to the application.
 
 {{ex-homogeneous}} shows an example for a homogeneous array of
 booleans in C++ and CBOR.
@@ -416,8 +422,8 @@ define the additional tag so it is available when actually needed.
 Allocating it out of a different number space makes the preference for
 row-major evident.
 
-Applying a Homogeneous Array tag to a Typed Array would be redundant
-and is therefore not provided by the present specification.
+Applying a Homogeneous Array tag to a Typed Array would usually be
+redundant and is therefore not provided by the present specification.
 
 ----
 
