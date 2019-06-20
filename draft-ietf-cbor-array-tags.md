@@ -541,8 +541,10 @@ Acknowledgements
 ================
 {: numbered="no"}
 
-Jim Schaad reminded us that column-major order
-still is in use.  IANA helped correct an error in a previous version.
+Jim Schaad provided helpful comments and reminded us that column-major order
+still is in use.  Jeffrey Yaskin helped improve the definition of
+homogeneous arrays.
+IANA helped correct an error in a previous version.
 
 <!--  LocalWords:  CBOR extensibility IANA uint sint IEEE endian
  -->
