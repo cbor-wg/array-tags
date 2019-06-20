@@ -308,7 +308,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Bormann, C., Ed." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-ietf-cbor-array-tags-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-06-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-06-20" />
   <meta name="dct.abstract" content="The Concise Binary Object Representation (CBOR, RFC 7049) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation.The present document makes use of this extensibility to define a number of CBOR tags for typed arrays of numeric data, as well as two additional tags for multi-dimensional and homogeneous arrays.  It is intended as the reference document for the IANA registration of the CBOR tags defined." />
   <meta name="description" content="The Concise Binary Object Representation (CBOR, RFC 7049) is a data format whose design goals include the possibility of extremely small code size, fairly small message size, and extensibility without the need for version negotiation.The present document makes use of this extensibility to define a number of CBOR tags for typed arrays of numeric data, as well as two additional tags for multi-dimensional and homogeneous arrays.  It is intended as the reference document for the IANA registration of the CBOR tags defined." />
 
@@ -329,10 +329,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Informational</td>
-<td class="right">June 19, 2019</td>
+<td class="right">June 20, 2019</td>
 </tr>
 <tr>
-<td class="left">Expires: December 21, 2019</td>
+<td class="left">Expires: December 22, 2019</td>
 <td class="right"></td>
 </tr>
 
@@ -350,7 +350,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 21, 2019.</p>
+<p>This Internet-Draft will expire on December 22, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -415,6 +415,7 @@ ul.toc li {
 </h1>
 <p id="rfc.section.1.1.p.1">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP&#160;14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
 <p id="rfc.section.1.1.p.2">The term &#8220;byte&#8221; is used in its now customary sense as a synonym for &#8220;octet&#8221;.  Where bit arithmetic is explained, this document uses the notation familiar from the programming language C (including C++14&#8217;s 0bnnn binary literals), except that the operator &#8220;**&#8221; stands for exponentiation.</p>
+<p id="rfc.section.1.1.p.3">The term &#8220;array&#8221; is used in a general sense in this document, unless further specified.  The term &#8220;classical CBOR array&#8221; describes an array represented with CBOR major type 4.  A &#8220;homogeneous array&#8221; is an array of elements that are all of the same type (the term is neutral whether that is a representation type or an application data model type).</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#typedarrays" id="typedarrays">Typed Arrays</a>
 </h1>
@@ -503,7 +504,7 @@ ul.toc li {
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#additional-array-tags" id="additional-array-tags">Additional Array Tags</a>
 </h1>
-<p id="rfc.section.3.p.1">This specification defines three additional array tags.  The Multi-dimensional Array tags can be combined with classical CBOR arrays as well as with Typed Arrays in order to build multi-dimensional arrays with constant numbers of elements in the sub-arrays.  The Homogeneous Array tag can be used to facilitate the ingestion of homogeneous classical CBOR arrays, providing performance advantages even when a Typed Array does not apply.</p>
+<p id="rfc.section.3.p.1">This specification defines three additional array tags.  The Multi-dimensional Array tags can be combined with classical CBOR arrays as well as with Typed Arrays in order to build multi-dimensional arrays with constant numbers of elements in the sub-arrays.  The Homogeneous Array tag can be used as a signal by an application to identify a classical CBOR array as a homogeneous array, even when a Typed Array does not apply.</p>
 <h1 id="rfc.section.3.1">
 <a href="#rfc.section.3.1">3.1.</a> <a href="#multi-dimensional-array" id="multi-dimensional-array">Multi-dimensional Array</a>
 </h1>
@@ -603,8 +604,8 @@ uint16_t a[2][3] = {
 <dt>Data Item:</dt>
 <dd style="margin-left: 8">array (major type 4)</dd>
 </dl>
-<p id="rfc.section.3.2.p.2">This tag provides a hint to decoders that the CBOR array (major type 4, a one-dimensional array) tagged by it has elements that are all of the same application type.  The element type of the array is thus determined by the application type of the first array element.  This can be used by implementations in strongly typed languages while decoding to create native homogeneous arrays of specific types instead of ordered lists.</p>
-<p id="rfc.section.3.2.p.3">Which CBOR data items constitute elements of the same application type is specific to the application.  However, type systems of programming languages have enough commonality that an application should be able to create portable homogeneous arrays.</p>
+<p id="rfc.section.3.2.p.2">This tag identifies the classical CBOR array (a one-dimensional array) tagged by it as a homogeneous array, that is, it has elements that are all of the same application model data type.  The element type of the array is thus determined by the application model data type of the first array element.</p>
+<p id="rfc.section.3.2.p.3">This can be used in application data models that apply specific semantics to homogeneous arrays.  Also, in certain cases, implementations in strongly typed languages may be able to create native homogeneous arrays of specific types instead of ordered lists while decoding.  Which CBOR data items constitute elements of the same application type is specific to the application.</p>
 <p><a href="#ex-homogeneous" class="xref">Figure 4</a> shows an example for a homogeneous array of booleans in C++ and CBOR.</p>
 <div id="rfc.figure.4"></div>
 <div id="ex-homogeneous"></div>
@@ -643,7 +644,7 @@ foo myArray[2] = { {true, 3}, {true, -4} };
 <p id="rfc.section.4.p.1">Support for both little- and big-endian representation may seem out of character with CBOR, which is otherwise fully big endian.  This support is in line with the intended use of the typed arrays and the objective not to require conversion of each array element.</p>
 <p id="rfc.section.4.p.2">This specification allocates a sizable chunk out of the single-byte tag space.  This use of code point space is justified by the wide use of typed arrays in data interchange.</p>
 <p id="rfc.section.4.p.3">Providing a column-major order variant of the multi-dimensional array may seem superfluous to some, and useful to others.  It is cheap to define the additional tag so it is available when actually needed.  Allocating it out of a different number space makes the preference for row-major evident.</p>
-<p id="rfc.section.4.p.4">Applying a Homogeneous Array tag to a Typed Array would be redundant and is therefore not provided by the present specification.</p>
+<p id="rfc.section.4.p.4">Applying a Homogeneous Array tag to a Typed Array would usually be redundant and is therefore not provided by the present specification.</p>
 <p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#cddl-typenames" id="cddl-typenames">CDDL typenames</a>
