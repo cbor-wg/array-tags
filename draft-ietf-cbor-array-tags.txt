@@ -791,8 +791,10 @@ Internet-Draft         CBOR tags for typed arrays              June 2019
 
 Acknowledgements
 
-   Jim Schaad reminded us that column-major order still is in use.  IANA
-   helped correct an error in a previous version.
+   Jim Schaad provided helpful comments and reminded us that column-
+   major order still is in use.  Jeffrey Yaskin helped improve the
+   definition of homogeneous arrays.  IANA helped correct an error in a
+   previous version.
 
 Author's Address
 
@@ -804,8 +806,6 @@ Author's Address
 
    Phone: +49-421-218-63921
    Email: cabo@tzi.org
-
-
 
 
 
