@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-# date: 2019-03-05
+# date: 2019-08-14
 
 stand_alone: true
 
@@ -522,6 +522,17 @@ ignore.  As always, the decoder therefore has to ensure that it is not
 driven into an undefined state by array elements that do not fulfill
 the promise and that it does continue to fulfill its API contract in
 this case as well.
+
+As with all formats that are used for data interchange, an attacker
+may have control over the shape of the data delivered as input to the
+application, which therefore needs to validate that shape before it
+makes it the basis of its further processing.  One unique aspect that
+typed arrays add to this is that an attacker might substitute a
+Uint8ClampedArray for where the application expects a Uint8Array, or
+vice versa, potentially leading to very different (and unexpected)
+processing semantics of the in-memory data structures constructed.
+Applications that could be affected by this therefore will need to be
+careful about making this distinction in their input validation.
 
 ----
 
