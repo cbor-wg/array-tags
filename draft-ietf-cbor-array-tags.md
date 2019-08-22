@@ -2,13 +2,13 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-# date: 2019-08-14
+# date: 2019-08-22
 
 stand_alone: true
 
 ipr: trust200902
 keyword: Internet-Draft
-cat: info
+cat: std
 
 pi: [toc, sortrefs, symrefs, compact, comments]
 
