@@ -69,9 +69,9 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Typed Arrays  . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Types of numbers  . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Types of numbers  . . . . . . . . . . . . . . . . . . . .   4
    3.  Additional Array Tags . . . . . . . . . . . . . . . . . . . .   5
-     3.1.  Multi-dimensional Array . . . . . . . . . . . . . . . . .   5
+     3.1.  Multi-dimensional Array . . . . . . . . . . . . . . . . .   6
        3.1.1.  Row-major Order . . . . . . . . . . . . . . . . . . .   6
        3.1.2.  Column-Major order  . . . . . . . . . . . . . . . . .   7
      3.2.  Homogeneous Array . . . . . . . . . . . . . . . . . . . .   8
@@ -94,7 +94,7 @@ Table of Contents
    well as a tagging mechanism that enables extending the set of data
    types supported via an IANA registry.
 
-   Recently, a simple form of typed arrays of numeric data have received
+   Recently, a simple form of typed arrays of numeric data has received
    interest both in the Web graphics community [TypedArray] and in the
    JavaScript specification [TypedArrayES6], as well as in corresponding
    implementations [ArrayBuffer].
@@ -146,8 +146,13 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    further specified.  The term "classical CBOR array" describes an
    array represented with CBOR major type 4.  A "homogeneous array" is
    an array of elements that are all of the same type (the term is
-   neutral whether that is a representation type or an application data
-   model type).
+   neutral as to whether that is a representation type or an application
+   data model type).
+
+   The terms "big endian" and "little endian" are used to indicate a
+   most significant byte first (MSB first) representation of integers,
+   and a least significant byte first (LSB first) representation,
+   respectively.
 
 2.  Typed Arrays
 
@@ -157,11 +162,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    (major type 2), enclosed by a single tag indicating the type and
    encoding of all the numbers represented in the byte string.
 
-2.1.  Types of numbers
-
-   Three classes of numbers are of interest: unsigned integers (uint),
-   signed integers (two's complement, sint), and IEEE 754 binary
-
 
 
 
@@ -170,6 +170,10 @@ Bormann                  Expires March 28, 2020                 [Page 3]
 Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
+2.1.  Types of numbers
+
+   Three classes of numbers are of interest: unsigned integers (uint),
+   signed integers (two's complement, sint), and IEEE 754 binary
    floating point numbers (which are always signed).  For each of these
    classes, there are multiple representation lengths in active use:
 
@@ -205,6 +209,23 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    The value is split up into 5 bit fields: 0b010_f_s_e_ll, as detailed
    in Table 2.
 
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                  Expires March 28, 2020                 [Page 4]
+
+Internet-Draft         CBOR tags for typed arrays         September 2019
+
+
      +-------+-------------------------------------------------------+
      | Field | Use                                                   |
      +-------+-------------------------------------------------------+
@@ -217,15 +238,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
              Table 2: Bit fields in the low 8 bits of the tag
 
-
-
-
-
-Bormann                  Expires March 28, 2020                 [Page 4]
-
-Internet-Draft         CBOR tags for typed arrays         September 2019
-
-
    The number of bytes in each array element can then be calculated by
    "2**(f + ll)" (or "1 << (f + ll)" in a typical programming language).
    (Notice that 0f and ll are the two least significant bits,
@@ -234,8 +246,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    In the CBOR representation, the total number of elements in the array
    is not expressed explicitly, but implied from the length of the byte
    string and the length of each representation.  It can be computed
-   inversely to the previous formula from the length of the byte string
-   in bytes: "bytelength >> (f + ll)".
+   from the length, in bytes, of the byte string comprising the
+   representation of the array by inverting the previous formula:
+   "bytelength >> (f + ll)".
 
    For the uint8/sint8 values, the endianness is redundant.  Only the
    tag for the big endian variant is used and assigned as such.  The Tag
@@ -261,6 +274,14 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    This specification defines three additional array tags.  The Multi-
    dimensional Array tags can be combined with classical CBOR arrays as
    well as with Typed Arrays in order to build multi-dimensional arrays
+
+
+
+Bormann                  Expires March 28, 2020                 [Page 5]
+
+Internet-Draft         CBOR tags for typed arrays         September 2019
+
+
    with constant numbers of elements in the sub-arrays.  The Homogeneous
    Array tag can be used as a signal by an application to identify a
    classical CBOR array as a homogeneous array, even when a Typed Array
@@ -274,14 +295,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    dimensions towards inner dimensions) while the second array
    represents the contents of the multi-dimensional array.  If the
    second array is itself tagged as a Typed Array then the element type
-
-
-
-Bormann                  Expires March 28, 2020                 [Page 5]
-
-Internet-Draft         CBOR tags for typed arrays         September 2019
-
-
    of the multi-dimensional array is known to be the same type as that
    of the Typed Array.
 
@@ -303,6 +316,27 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    Figure 1 shows a declaration of a two-dimensional array in the C
    language, a representation of that in CBOR using both a
    multidimensional array tag and a typed array tag.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Bormann                  Expires March 28, 2020                 [Page 6]
+
+Internet-Draft         CBOR tags for typed arrays         September 2019
+
 
    uint16_t a[2][3] = {
      {2, 4, 8},   /* row 0 */
@@ -330,14 +364,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    (which, with the small numbers chosen for the example, happens to be
    shorter).
 
-
-
-
-Bormann                  Expires March 28, 2020                 [Page 6]
-
-Internet-Draft         CBOR tags for typed arrays         September 2019
-
-
    <Tag 40> # multi-dimensional array tag
       82       # array(2)
         82      # array(2)
@@ -361,6 +387,13 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    uses "column major" order arrays is provided in this subsection under
    the tag 1040, as illustrated in Figure 3.
 
+
+
+Bormann                  Expires March 28, 2020                 [Page 7]
+
+Internet-Draft         CBOR tags for typed arrays         September 2019
+
+
    Tag:  1040
 
    Data Item:  as with tag 40, except that the data in the second array
@@ -382,17 +415,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
      Figure 3: Multi-dimensional array using basic CBOR array, column
                                 major order
-
-
-
-
-
-
-
-Bormann                  Expires March 28, 2020                 [Page 7]
-
-Internet-Draft         CBOR tags for typed arrays         September 2019
-
 
 3.2.  Homogeneous Array
 
@@ -416,28 +438,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    Figure 4 shows an example for a homogeneous array of booleans in C++
    and CBOR.
 
-   bool boolArray[2] = { true, false };
-
-   <Tag 41>  # Homogeneous Array Tag
-      82           #array(2)
-         F5        # true
-         F4        # false
-
-                Figure 4: Homogeneous array in C++ and CBOR
-
-   Figure 5 extends the example with a more complex structure.
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -449,6 +449,17 @@ Bormann                  Expires March 28, 2020                 [Page 8]
 
 Internet-Draft         CBOR tags for typed arrays         September 2019
 
+
+   bool boolArray[2] = { true, false };
+
+   <Tag 41>  # Homogeneous Array Tag
+      82           #array(2)
+         F5        # true
+         F4        # false
+
+                Figure 4: Homogeneous array in C++ and CBOR
+
+   Figure 5 extends the example with a more complex structure.
 
    typedef struct {
      bool active;
@@ -486,17 +497,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
    Applying a Homogeneous Array tag to a Typed Array would usually be
    redundant and is therefore not provided by the present specification.
-
-
-
-
-
-
-
-
-
-
-
 
 
 
