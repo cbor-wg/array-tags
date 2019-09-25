@@ -756,6 +756,12 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/info/rfc8610>.
 
+   [TypedArrayES6]
+              "22.2 TypedArray Objects", in: ECMA-262 6th Edition, The
+              ECMAScript 2015 Language Specification, June 2015,
+              <http://www.ecma-international.org/ecma-262/6.0/#sec-
+              typedarray-objects>.
+
 8.2.  Informative References
 
    [ArrayBuffer]
@@ -766,12 +772,6 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    [TypedArray]
               Vukicevic, V. and K. Russell, "Typed Array Specification",
               February 2011.
-
-   [TypedArrayES6]
-              "22.2 TypedArray Objects", in: ECMA-262 6th Edition, The
-              ECMAScript 2015 Language Specification, June 2015,
-              <http://www.ecma-international.org/ecma-262/6.0/#sec-
-              typedarray-objects>.
 
 Contributors
 
