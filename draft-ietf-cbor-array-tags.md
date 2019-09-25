@@ -98,7 +98,7 @@ corresponding implementations {{ArrayBuffer}}.
 
 Since these typed arrays may carry significant amounts of data, there
 is interest in interchanging them in CBOR without the need of lengthy
-conversion of each number in the array.  This also can save space
+conversion of each number in the array.  This can also save space
 overhead with encoding a type for each element of an array.
 
 This document defines a number of interrelated CBOR tags that cover
