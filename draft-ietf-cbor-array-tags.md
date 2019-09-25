@@ -2,7 +2,7 @@
 title: Concise Binary Object Representation (CBOR) Tags for Typed Arrays
 abbrev: CBOR tags for typed arrays
 docname: draft-ietf-cbor-array-tags-latest
-# date: 2019-08-22
+# date: 2019-09-25
 
 stand_alone: true
 
@@ -37,6 +37,13 @@ normative:
     seriesinfo:
       IEEE Std: 754-2008
     date: false
+  TypedArrayES6:
+    target: http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-objects
+    title: >
+      22.2 TypedArray Objects
+    seriesinfo:
+       "in: ECMA-262 6th Edition,": "The ECMAScript 2015 Language Specification"
+    date: 2015-06
 
 informative:
   TypedArray:
@@ -51,13 +58,6 @@ informative:
         name: Kenneth Russell
         org: Google, Inc.
     date: 2011-02-08
-  TypedArrayES6:
-    target: http://www.ecma-international.org/ecma-262/6.0/#sec-typedarray-objects
-    title: >
-      22.2 TypedArray Objects
-    seriesinfo:
-       "in: ECMA-262 6th Edition,": "The ECMAScript 2015 Language Specification"
-    date: 2015-06
   ArrayBuffer:
     target: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays
     title: JavaScript typed arrays
