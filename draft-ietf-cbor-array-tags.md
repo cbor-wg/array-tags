@@ -91,7 +91,7 @@ RFC 7049 defines a basic set of data types, as well as a tagging
 mechanism that enables extending the set of data types supported via
 an IANA registry.
 
-Recently, a simple form of typed arrays of numeric data have received
+Recently, a simple form of typed arrays of numeric data has received
 interest both in the Web graphics community {{TypedArray}} and in
 the JavaScript specification {{TypedArrayES6}}, as well as in
 corresponding implementations {{ArrayBuffer}}.
@@ -140,8 +140,12 @@ exponentiation.
 The term "array" is used in a general sense in this document, unless
 further specified.  The term "classical CBOR array" describes an array
 represented with CBOR major type 4.  A "homogeneous array" is an array
-of elements that are all of the same type (the term is neutral whether
+of elements that are all of the same type (the term is neutral as to whether
 that is a representation type or an application data model type).
+
+The terms "big endian" and "little endian" are used to indicate a most
+significant byte first (MSB first) representation of integers, and a
+least significant byte first (LSB first) representation, respectively.
 
 Typed Arrays        {#typedarrays}
 ============
@@ -203,8 +207,9 @@ The number of bytes in each array element can then be calculated by
 In the CBOR representation, the total number of elements in the array
 is not expressed explicitly, but implied from the length of the byte
 string and the length of each representation.  It can be
-computed inversely to the previous formula from the length of the
-byte string in bytes: `bytelength >> (f + ll)`.
+computed from the length, in bytes, of the byte string comprising the
+representation of the array by inverting the previous formula:
+`bytelength >> (f + ll)`.
 
 For the uint8/sint8 values, the endianness is redundant.
 Only the tag for the big endian variant is used and assigned as such.
