@@ -4,8 +4,8 @@
 
 Network Working Group                                    C. Bormann, Ed.
 Internet-Draft                                   Universitaet Bremen TZI
-Intended status: Standards Track                      September 25, 2019
-Expires: March 28, 2020
+Intended status: Standards Track                        October 01, 2019
+Expires: April 3, 2020
 
 
    Concise Binary Object Representation (CBOR) Tags for Typed Arrays
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 28, 2020.
+   This Internet-Draft will expire on April 3, 2020.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 1]
+Bormann                   Expires April 3, 2020                 [Page 1]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    carefully, as they describe your rights and restrictions with respect
@@ -82,7 +82,7 @@ Table of Contents
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
      8.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      8.2.  Informative References  . . . . . . . . . . . . . . . . .  14
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  14
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
    Acknowledgements  . . . . . . . . . . . . . . . . . . . . . . . .  15
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  15
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 2]
+Bormann                   Expires April 3, 2020                 [Page 2]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    dimensional and homogeneous arrays.  It is intended as the reference
@@ -138,9 +138,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
    The term "byte" is used in its now customary sense as a synonym for
    "octet".  Where bit arithmetic is explained, this document uses the
-   notation familiar from the programming language C (including C++14's
-   0bnnn binary literals), except that the operator "**" stands for
-   exponentiation.
+   notation familiar from the programming language C [C] (including
+   C++14's 0bnnn binary literals [Cplusplus]), except that the operator
+   "**" stands for exponentiation.
 
    The term "array" is used in a general sense in this document, unless
    further specified.  The term "classical CBOR array" describes an
@@ -165,9 +165,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 3]
+Bormann                   Expires April 3, 2020                 [Page 3]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 2.1.  Types of numbers
@@ -221,9 +221,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 4]
+Bormann                   Expires April 3, 2020                 [Page 4]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
      +-------+-------------------------------------------------------+
@@ -277,9 +277,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 5]
+Bormann                   Expires April 3, 2020                 [Page 5]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    with constant numbers of elements in the sub-arrays.  The Homogeneous
@@ -333,9 +333,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 6]
+Bormann                   Expires April 3, 2020                 [Page 6]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    uint16_t a[2][3] = {
@@ -389,9 +389,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 7]
+Bormann                   Expires April 3, 2020                 [Page 7]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    Tag:  1040
@@ -436,7 +436,7 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
    same application type is specific to the application.
 
    Figure 4 shows an example for a homogeneous array of booleans in C++
-   and CBOR.
+   [Cplusplus] and CBOR.
 
 
 
@@ -445,9 +445,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 8]
+Bormann                   Expires April 3, 2020                 [Page 8]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    bool boolArray[2] = { true, false };
@@ -501,9 +501,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                 [Page 9]
+Bormann                   Expires April 3, 2020                 [Page 9]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 5.  CDDL typenames
@@ -557,9 +557,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                [Page 10]
+Bormann                   Expires April 3, 2020                [Page 10]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 6.  IANA Considerations
@@ -613,9 +613,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                [Page 11]
+Bormann                   Expires April 3, 2020                [Page 11]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
    +------+-------------------+----------------------------------------+
@@ -669,9 +669,9 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                [Page 12]
+Bormann                   Expires April 3, 2020                [Page 12]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 7.  Security Considerations
@@ -725,14 +725,20 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
 
 
 
-Bormann                  Expires March 28, 2020                [Page 13]
+Bormann                   Expires April 3, 2020                [Page 13]
 
-Internet-Draft         CBOR tags for typed arrays         September 2019
+Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 8.  References
 
 8.1.  Normative References
+
+   [C]        "Information technology -- Programming languages -- C",
+              ISO/IEC 9899, 2018.
+
+   [Cplusplus]
+              "Programming languages -- C++", ISO/IEC 14882, 2017.
 
    [IEEE754]  IEEE, "IEEE Standard for Floating-Point Arithmetic", IEEE
               Std 754-2008.
@@ -773,18 +779,18 @@ Internet-Draft         CBOR tags for typed arrays         September 2019
               Vukicevic, V. and K. Russell, "Typed Array Specification",
               February 2011.
 
+
+
+Bormann                   Expires April 3, 2020                [Page 14]
+
+Internet-Draft         CBOR tags for typed arrays           October 2019
+
+
 Contributors
 
    The initial draft for this specification was written by Johnathan
    Roatch (roatch@gmail.com).  Many thanks for getting this ball
    rolling.
-
-
-
-Bormann                  Expires March 28, 2020                [Page 14]
-
-Internet-Draft         CBOR tags for typed arrays         September 2019
-
 
    Glenn Engel suggested the tags for multi-dimensional arrays and
    homogeneous arrays.
@@ -831,10 +837,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-Bormann                  Expires March 28, 2020                [Page 15]
+Bormann                   Expires April 3, 2020                [Page 15]
