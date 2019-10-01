@@ -44,6 +44,17 @@ normative:
     seriesinfo:
        "in: ECMA-262 6th Edition,": "The ECMAScript 2015 Language Specification"
     date: 2015-06
+  C:
+    title: Information technology — Programming languages — C
+    date: 2018
+    seriesinfo:
+      ISO/IEC: 9899
+  Cplusplus:
+    title: Programming languages — C++
+    date: 2017
+    seriesinfo:
+      ISO/IEC: 14882
+
 
 informative:
   TypedArray:
@@ -133,8 +144,8 @@ RFC 2119 {{ !RFC2119}}.
 The term "byte" is used in its now customary sense as a synonym for
 "octet".
 Where bit arithmetic is explained, this document uses the notation
-familiar from the programming language C (including C++14's 0bnnn
-binary literals), except that the operator "\*\*" stands for
+familiar from the programming language C {{C}} (including C++14's 0bnnn
+binary literals {{Cplusplus}}), except that the operator "\*\*" stands for
 exponentiation.
 
 The term "array" is used in a general sense in this document, unless
@@ -375,7 +386,7 @@ while decoding.  Which CBOR data items constitute elements of the same
 application type is specific to the application.
 
 {{ex-homogeneous}} shows an example for a homogeneous array of
-booleans in C++ and CBOR.
+booleans in C++ {{Cplusplus}} and CBOR.
 
 ~~~
 bool boolArray[2] = { true, false };
