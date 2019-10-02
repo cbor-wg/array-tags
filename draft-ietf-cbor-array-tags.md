@@ -207,7 +207,7 @@ detailed in {{fields}}.
 | Field | Use                                                   |
 | 0b010 | the constant bits 0, 1, 0                             |
 | f     | 0 for integer, 1 for float                            |
-| s     | 0 for unsigned integer or float, 1 for signed integer |
+| s     | 0 for float or unsigned integer, 1 for signed integer |
 | e     | 0 for big endian, 1 for little endian                 |
 | ll    | A number for the length ({{lengths}}).                |
 {: #fields title="Bit fields in the low 8 bits of the tag"}
