@@ -4,8 +4,8 @@
 
 Network Working Group                                    C. Bormann, Ed.
 Internet-Draft                                   Universitaet Bremen TZI
-Intended status: Standards Track                        October 01, 2019
-Expires: April 3, 2020
+Intended status: Standards Track                        October 02, 2019
+Expires: April 4, 2020
 
 
    Concise Binary Object Representation (CBOR) Tags for Typed Arrays
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on April 3, 2020.
+   This Internet-Draft will expire on April 4, 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 1]
+Bormann                   Expires April 4, 2020                 [Page 1]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 2]
+Bormann                   Expires April 4, 2020                 [Page 2]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -165,7 +165,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 3]
+Bormann                   Expires April 4, 2020                 [Page 3]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -221,7 +221,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 4]
+Bormann                   Expires April 4, 2020                 [Page 4]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -231,7 +231,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
      +-------+-------------------------------------------------------+
      | 0b010 | the constant bits 0, 1, 0                             |
      | f     | 0 for integer, 1 for float                            |
-     | s     | 0 for unsigned integer or float, 1 for signed integer |
+     | s     | 0 for float or unsigned integer, 1 for signed integer |
      | e     | 0 for big endian, 1 for little endian                 |
      | ll    | A number for the length (Table 1).                    |
      +-------+-------------------------------------------------------+
@@ -277,7 +277,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 5]
+Bormann                   Expires April 4, 2020                 [Page 5]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -333,7 +333,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 6]
+Bormann                   Expires April 4, 2020                 [Page 6]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -389,7 +389,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 7]
+Bormann                   Expires April 4, 2020                 [Page 7]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -445,7 +445,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 8]
+Bormann                   Expires April 4, 2020                 [Page 8]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -501,7 +501,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                 [Page 9]
+Bormann                   Expires April 4, 2020                 [Page 9]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -557,7 +557,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                [Page 10]
+Bormann                   Expires April 4, 2020                [Page 10]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -613,7 +613,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                [Page 11]
+Bormann                   Expires April 4, 2020                [Page 11]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -669,7 +669,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                [Page 12]
+Bormann                   Expires April 4, 2020                [Page 12]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -725,7 +725,7 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
 
 
 
-Bormann                   Expires April 3, 2020                [Page 13]
+Bormann                   Expires April 4, 2020                [Page 13]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
@@ -775,16 +775,22 @@ Internet-Draft         CBOR tags for typed arrays           October 2019
               2013, <https://developer.mozilla.org/en-
               US/docs/Web/JavaScript/Typed_arrays>.
 
-   [TypedArray]
-              Vukicevic, V. and K. Russell, "Typed Array Specification",
-              February 2011.
 
 
 
-Bormann                   Expires April 3, 2020                [Page 14]
+
+
+
+Bormann                   Expires April 4, 2020                [Page 14]
 
 Internet-Draft         CBOR tags for typed arrays           October 2019
 
+
+   [TypedArray]
+              Vukicevic, V. and K. Russell, "Typed Array Specification",
+              February 2011,
+              <https://web.archive.org/web/20110207024413/
+              http://www.khronos.org/registry/typedarray/specs/latest/>.
 
 Contributors
 
@@ -831,10 +837,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-Bormann                   Expires April 3, 2020                [Page 15]
+Bormann                   Expires April 4, 2020                [Page 15]
