@@ -68,7 +68,8 @@ informative:
         ins: K. Russell
         name: Kenneth Russell
         org: Google, Inc.
-    date: 2011-02-08
+    date: 2011-02-02
+    target: https://web.archive.org/web/20110207024413/http://www.khronos.org/registry/typedarray/specs/latest/
   ArrayBuffer:
     target: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays
     title: JavaScript typed arrays
